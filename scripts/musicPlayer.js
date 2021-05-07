@@ -29,7 +29,7 @@ export const musicPlayerInit = () => {
     }
   };
 
-  const prevTrack = () => {
+  const nextTrack = () => {
     if (trackIndex !== 0) {
       trackIndex--;
     } else {
@@ -38,7 +38,7 @@ export const musicPlayerInit = () => {
     loadTrack();
   };
 
-  const nextTrack = () => {
+  const prevTrack= () => {
     if (trackIndex === playlist.length - 1) {
       trackIndex = 0;
     } else {
