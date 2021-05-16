@@ -40,7 +40,7 @@ export const radioPlayerInit = () => {
 
     radioStop.disabled = false;
 
-    audio.src = event.target.dataset.radioStantion;
+    audio.src = event.target.dataset.radioStation;
     audio.play();
     changeIconPlay();
   });

@@ -16,6 +16,7 @@ export const videoPlayerInit = () => {
   videoFullScreen.addEventListener('click',()=>{
     videoPlayer.requestFullscreen();
   });
+  
   console.dir(videoPlayer);
 //смена иконки (пауза, плей)
   const toggleIcon = () => {

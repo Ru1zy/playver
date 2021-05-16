@@ -29,7 +29,7 @@ export const musicPlayerInit = () => {
     }
   };
 
-  const nextTrack = () => {
+  const prevTrack = () => {
     if (trackIndex !== 0) {
       trackIndex--;
     } else {
@@ -38,7 +38,7 @@ export const musicPlayerInit = () => {
     loadTrack();
   };
 
-  const prevTrack= () => {
+  const nextTrack = () => {
     if (trackIndex === playlist.length - 1) {
       trackIndex = 0;
     } else {
@@ -64,11 +64,11 @@ export const musicPlayerInit = () => {
     audioHeader.textContent = track.toUpperCase();
 
     if (event.target.classList.contains("audio-button__next")) {
-      prevTrack();
+      nextTrack();
     }
 
     if (event.target.classList.contains("audio-button__prev")) {
-      nextTrack();
+      prevTrack();
     }
   });
 
@@ -100,4 +100,5 @@ export const musicPlayerInit = () => {
     const progress = (x / allWidth) * audioPlayer.duration;
     audioPlayer.currentTime = progress;
   });
+  console.log(trackIndex);
 };
