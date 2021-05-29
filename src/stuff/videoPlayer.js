@@ -107,4 +107,9 @@ export const videoPlayerInit = () => {
   console.log (videoPlayer.volume);
   changeValue();
   console.log (videoPlayer.volume);
+
+  videoPlayerInit.stop = () => {
+    videoPlayer.pause();
+    toggleIcon();
+  };
 };

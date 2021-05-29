@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 	<meta property="og:url" content="">
 	<meta property="og:type" content="website">
@@ -17,10 +19,13 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
 	<link rel="manifest" href="img/site.webmanifest">
+
+
 	<link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
 
 	<title>PlayVer</title>
-	<script src="scripts/index.js" type="module"></script>
+	<script src="dist/script.js" type="module"></script>
+	<!--script src="src/index.js" type="module"></script-->
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/font-awesome.min.css">
 	<link rel="stylesheet" href="styles/style.min.css">
@@ -35,9 +40,7 @@
 	<main>
 		<section class="player">
 			<div class="player-btn player-video">Видео</div>
-
 			<div class="player-btn player-audio">Музыка</div>
-
 			<div class="player-btn player-radio">Радио</div>
 		</section>
 
@@ -61,7 +64,7 @@
 						<input type="range" class="video-volume" min="0" max="100" step="1" value="50">
 						<span class="fa fa-volume-up video-icon video-volume-up"></span>
 						<span class="fa fa-window-maximize video-icon video-fullscreen"></span>
-						</nav>
+					</nav>
 				</div>
 			</div>
 		</article>
@@ -88,6 +91,9 @@
 						<div class="audio-progress__timing"></div>
 					</div>
 					<span class="audio-time audio-time__total">00:00</span>
+					<span class="fa fa-volume-down audio-icon audio-volume-down"></span>
+					<input type="range" class="audio-volume" min="0" max="100" step="1" value="50">
+					<span class="fa fa-volume-up audio-icon audio-volume-up"></span>
 				</nav>
 			</footer>
 		</article>
@@ -111,7 +117,7 @@
 										<img class="radio-img" src="radio/hitfm.png" alt="обложка">
 									</div>
 									<input class="radio-btn" type="radio" id="hitFM" name="radioStation"
-											data-radio-station="http://online.hitfm.ua/HitFM">
+										data-radio-station="http://online.hitfm.ua/HitFM">
 									<span class="radio-name">Hit FM</span>
 								</label>
 							</li>
@@ -122,7 +128,7 @@
 										<img class="radio-img" src="radio/Energy.png" alt="обложка">
 									</div>
 									<input class="radio-btn" type="radio" id="energy" name="radioStation"
-											data-radio-station="https://cast.radiogroup.com.ua/nrj">
+										data-radio-station="https://cast.radiogroup.com.ua/nrj">
 									<span class="radio-name">Energy</span>
 								</label>
 							</li>
@@ -133,7 +139,7 @@
 										<img class="radio-img" src="radio/studio21.png" alt="обложка">
 									</div>
 									<input class="radio-btn" type="radio" id="studio21" name="radioStation"
-											data-radio-station="http://icecast-studio21.cdnvideo.ru/S21cl_1p">
+										data-radio-station="http://icecast-studio21.cdnvideo.ru/S21cl_1p">
 									<span class="radio-name">Studio 21</span>
 								</label>
 							</li>
@@ -144,7 +150,7 @@
 										<img class="radio-img" src="radio/kissfm.png" alt="обложка">
 									</div>
 									<input class="radio-btn" type="radio" id="kissFM" name="radioStation"
-											data-radio-station="http://online.kissfm.ua/KissFM_HD">
+										data-radio-station="http://online.kissfm.ua/KissFM_HD">
 									<span class="radio-name">Kiss FM</span>
 								</label>
 							</li>
@@ -155,7 +161,7 @@
 										<img class="radio-img" src="radio/radioroks.jpg" alt="обложка">
 									</div>
 									<input class="radio-btn" type="radio" id="radioRoks" name="radioStation"
-											data-radio-station="http://online.radioroks.ua/RadioROKS_HardnHeavy_HD">
+										data-radio-station="http://online.radioroks.ua/RadioROKS_HardnHeavy_HD">
 									<span class="radio-name">Radio Roks</span>
 								</label>
 							</li>
@@ -166,7 +172,7 @@
 										<img class="radio-img" src="radio/radiorecord.png" alt="обложка">
 									</div>
 									<input class="radio-btn" type="radio" id="radioRecord" name="radioStation"
-											data-radio-station="https://icecast228.ptspb.ru:8443/rr_128">
+										data-radio-station="https://icecast228.ptspb.ru:8443/rr_128">
 									<span class="radio-name">Radio Record</span>
 								</label>
 							</li>
@@ -177,8 +183,12 @@
 			</div>
 			<footer class="footer-fix radio-footer">
 				<button class="radio-stop fa fa-play"></button>
+				<span class="fa fa-volume-down radio-icon radio-volume-down"></span>
+				<input type="range" class="radio-volume" min="0" max="100" step="1" value="100">
+				<span class="fa fa-volume-up radio-icon radio-volume-up"></span>
 			</footer>
 		</article>
 	</main>
 </body>
+
 </html>

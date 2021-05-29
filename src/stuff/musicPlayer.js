@@ -11,7 +11,10 @@ export const musicPlayerInit = () => {
   const audioProgressTiming = document.querySelector(".audio-progress__timing");
   const audioTimePassed = document.querySelector(".audio-time__passed");
   const audioTimeTotal = document.querySelector(".audio-time__total");
-
+  const audioVolume = document.querySelector(".audio-volume")
+  const audioVolumeUp = document.querySelector(".audio-volume-up");
+  const audioVolumeDown = document.querySelector(".audio-volume-down");
+  console.dir(audioPlayer)
   const playlist = ["Anata-Wa Korosareta", "Barking Barrels", "Be Rich or Snitch","Beat Coin","Become Juicy","Blah-call-it","Cash-In-Garage","Final Lynch","FluteInc.-feat-Tony-Montana","Ideal Job","Konoha In Action","Lip-Slip","MonTony x Ru1zy - Cash","Murda-Priest","Rubbish-Gangstas","Still Flute +","Streets-In-Souls","Sweat-_-Blood","Tangle-Club","Thonnie","Tight Style reinc"];
   let trackIndex = 0;
   const loadTrack = () => {
@@ -101,4 +104,27 @@ export const musicPlayerInit = () => {
     audioPlayer.currentTime = progress;
   });
   console.log(trackIndex);
+
+  const changeValue = () => {
+    audioPlayer.volume = audioVolume.value / 100;
+    audioVolumeUp.onclick = function () {
+      audioPlayer.volume = 1;
+      audioVolume.value = 100;
+    }
+    audioVolumeDown.onclick = function () {
+      audioPlayer.volume = 0;
+      audioVolume.value = 0;
+    }
+    console.log(audioVolume);
+  };
+
+  audioVolume.addEventListener('input',changeValue);
+  changeValue();
+
+  musicPlayerInit.stop = () => {
+    audioPlayer.pause();
+    audio.classList.remove('play');
+    audioButtonPlay.classList.remove('fa-pause');
+    audioButtonPlay.classList.add('fa-play');
+  };
 };
