@@ -1,194 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="theme-color" content="#0a0c16">
+  <title>PlayVer — Cyberpunk Media Station</title>
 
-	<meta property="og:url" content="">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content="PlayVer - your future walkman, haha">
-	<meta property="og:image" content="img/favicon-32x32.png">
-	<meta property="og:description" content="Закажите разработку сайта без посредников">
-	<meta property="og:site_name" content="PlayVer">
-	<meta property="article:author" content="2ez4ru1z">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PlayVer — Cyberpunk Media Station">
+  <meta property="og:description" content="Мультимедиа-станция: Видеоплеер, Аудиоплеер со спектральным визуализатором и Онлайн-радио.">
+  <meta property="og:site_name" content="PlayVer">
+  <meta property="article:author" content="2ez4ru1z">
 
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-	<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-	<link rel="manifest" href="img/site.webmanifest">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-	<link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
-
-	<title>PlayVer</title>
-	<script src="dist/script.js" type="module"></script>
-	<!--script src="src/index.js" type="module"></script-->
-	<link rel="stylesheet" href="styles/normalize.css">
-	<link rel="stylesheet" href="styles/font-awesome.min.css">
-	<link rel="stylesheet" href="styles/style.min.css">
+  <link rel="stylesheet" href="styles/normalize.css">
+  <link rel="stylesheet" href="styles/font-awesome.min.css">
+  <link rel="stylesheet" href="styles/style.min.css">
 </head>
 
 <body>
+  <div class="station-shell">
+    <header class="app-header">
+      <a href="index.html" class="logo-link">
+        <h1 class="header-logo"><span class="neon-accent">Play</span>Ver</h1>
+        <span class="logo-tag">MEDIA STATION // v2.0</span>
+      </a>
+    </header>
 
-	<a href="index.html">
-		<h1 class="header"><span class="red-text">Play</span>Ver</h1>
-	</a>
+    <main class="main-content">
+      <!-- Media Mode Switcher -->
+      <nav class="player-nav">
+        <button class="player-btn player-video" data-mode="video">
+          <i class="fa fa-film"></i>
+          <span>Video</span>
+        </button>
+        <button class="player-btn player-audio" data-mode="audio">
+          <i class="fa fa-music"></i>
+          <span>Music</span>
+        </button>
+        <button class="player-btn player-radio" data-mode="radio">
+          <i class="fa fa-podcast"></i>
+          <span>Radio</span>
+        </button>
+      </nav>
 
-	<main>
-		<section class="player">
-			<div class="player-btn player-video">Video</div>
-			<div class="player-btn player-audio">Music</div>
-			<div class="player-btn player-radio">Radio</div>
-		</section>
+      <!-- Welcome Hero Placeholder -->
+      <div class="temp">
+        <div class="temp-card">
+          <div class="temp-badge">ALL-IN-ONE MEDIA ENGINE</div>
+          <h2>Your Future is <span class="neon-accent">Play</span>Ver</h2>
+          <p>Выберите режим воспроизведения выше: смотрите видео, слушайте авторские треки со звуковым анализатором или подключайтесь к мировым радиостанциям.</p>
+        </div>
+      </div>
 
-		<div class="temp">
-			<h2>
-				Your future is <span class="red-text">Play</span>Ver
-			</h2>
-		</div>
+      <!-- Video Player Block -->
+      <article class="player-block video">
+        <div class="container">
+          <div class="video-container">
+            <div class="video-screen-wrapper">
+              <video src="video/bros.mp4" class="video-player" poster="video/play.svg" playsinline></video>
+            </div>
+            
+            <nav class="video-navigation">
+              <button class="video-button video-button__play fa fa-play" title="Play/Pause"></button>
+              <button class="video-button video-button__stop fa fa-stop" title="Stop"></button>
+              
+              <span class="video-time video-time__passed">00:00</span>
+              <input type="range" class="video-progress" min="0" max="100" step="0.1" value="0" aria-label="Прогресс видео">
+              <span class="video-time video-time__total">00:00</span>
+              
+              <button class="video-speed" title="Скорость воспроизведения">1x</button>
+              <button class="video-pip fa fa-clone" title="Картинка в картинке"></button>
 
-		<article class="player-block video">
-			<div class="container">
-				<div class="video-container">
-					<video src="video/bros.mp4" class="video-player" poster="video/play.svg"></video>
-					<nav class="video-navigation">
-						<button class="video-button video-button__play fa fa-play"></button>
-						<button class="video-button video-button__stop fa fa-stop"></button>
-						<p class="video-time video-time__passed">00:00</p>
-						<input type="range" class="video-progress" min="0" max="100" step="0.1" value="0">
-						<p class="video-time video-time__total">00:00</p>
-						<span class="fa fa-volume-down video-icon video-volume-down"></span>
-						<input type="range" class="video-volume" min="0" max="100" step="1" value="50">
-						<span class="fa fa-volume-up video-icon video-volume-up"></span>
-						<span class="fa fa-window-maximize video-icon video-fullscreen"></span>
-					</nav>
-				</div>
-			</div>
-		</article>
+              <span class="fa fa-volume-down video-icon video-volume-down"></span>
+              <input type="range" class="video-volume" min="0" max="100" step="1" value="50" aria-label="Громкость">
+              <span class="fa fa-volume-up video-icon video-volume-up"></span>
+              
+              <span class="fa fa-window-maximize video-icon video-fullscreen" title="На весь экран"></span>
+            </nav>
+          </div>
+        </div>
+      </article>
 
-		<article class="player-block audio">
-			<div class="container">
-				<div class="audio-container">
-					<div class="audio-cover">
-						<img class="audio-img" src="audio/hello.jpg">
-					</div>
-					<h3 class="audio-header">Spin That!</h3>
-					<audio class="audio-player" src="audio/Anata-Wa Korosareta.mp3"></audio>
-				</div>
-			</div>
-			<footer class="footer-fix audio-footer">
-				<nav class="audio-navigation">
-					<div class="audio-btns">
-						<button class="audio-button audio-button__prev fa fa-step-backward"></button>
-						<button class="audio-button audio-button__play fa fa-play"></button>
-						<button class="audio-button audio-button__next fa fa-step-forward"></button>
-					</div>
-					<span class="audio-time audio-time__passed">00:00</span>
-					<div class="audio-progress">
-						<div class="audio-progress__timing"></div>
-					</div>
-					<span class="audio-time audio-time__total">00:00</span>
-					<span class="fa fa-volume-down audio-icon audio-volume-down"></span>
-					<input type="range" class="audio-volume" min="0" max="100" step="1" value="50">
-					<span class="fa fa-volume-up audio-icon audio-volume-up"></span>
-				</nav>
-			</footer>
-		</article>
+      <!-- Audio / Music Player Block -->
+      <article class="player-block audio">
+        <div class="container">
+          <div class="audio-container">
+            <div class="audio-cover-wrapper">
+              <div class="audio-cover">
+                <img class="audio-img" src="audio/hello.jpg" alt="Обложка трека">
+                <div class="vinyl-center"></div>
+              </div>
+            </div>
 
+            <div class="audio-info">
+              <span class="audio-badge">RU1ZY BEATS // 320 KBPS</span>
+              <h3 class="audio-header">SPIN THAT!</h3>
+            </div>
 
-		<article class="player-block radio">
-			<div class="container">
-				<div class="radio-container">
-					<div class="radio-player">
-						<div class="radio-cover">
-							<img class="radio-cover__img" src="radio/start.jpg">
-						</div>
-						<h3 class="radio-header__big">Choose your radiostation</h3>
-					</div>
-					<form class="radio-navigation">
-						<h2 class="radio-header">Another radiostations</h2>
-						<ul class="radio-list">
-							<li class="radio-item">
-								<label>
-									<div class="radio-check">
-										<img class="radio-img" src="radio/hitfm.png" alt="обложка">
-									</div>
-									<input class="radio-btn" type="radio" id="hitFM" name="radioStation"
-										data-radio-station="http://online.hitfm.ua/HitFM">
-									<span class="radio-name">Hit FM</span>
-								</label>
-							</li>
+            <!-- Canvas Frequency Visualizer -->
+            <div class="visualizer-wrapper">
+              <canvas id="musicVisualizer" class="spectrum-canvas" height="90"></canvas>
+            </div>
 
-							<li class="radio-item">
-								<label>
-									<div class="radio-check">
-										<img class="radio-img" src="radio/Energy.png" alt="обложка">
-									</div>
-									<input class="radio-btn" type="radio" id="energy" name="radioStation"
-										data-radio-station="https://cast.radiogroup.com.ua/nrj">
-									<span class="radio-name">Energy</span>
-								</label>
-							</li>
+            <audio class="audio-player" src="audio/Anata-Wa Korosareta.mp3" preload="metadata"></audio>
+          </div>
+        </div>
 
-							<li class="radio-item">
-								<label>
-									<div class="radio-check">
-										<img class="radio-img" src="radio/studio21.png" alt="обложка">
-									</div>
-									<input class="radio-btn" type="radio" id="studio21" name="radioStation"
-										data-radio-station="http://icecast-studio21.cdnvideo.ru/S21cl_1p">
-									<span class="radio-name">Studio 21</span>
-								</label>
-							</li>
+        <footer class="footer-fix audio-footer">
+          <nav class="audio-navigation">
+            <div class="audio-btns">
+              <button class="audio-button audio-button__prev fa fa-step-backward" title="Предыдущий трек"></button>
+              <button class="audio-button audio-button__play fa fa-play" title="Воспроизведение"></button>
+              <button class="audio-button audio-button__next fa fa-step-forward" title="Следующий трек"></button>
+            </div>
+            
+            <span class="audio-time audio-time__passed">00:00</span>
+            <div class="audio-progress">
+              <div class="audio-progress__timing"></div>
+            </div>
+            <span class="audio-time audio-time__total">00:00</span>
 
-							<li class="radio-item">
-								<label>
-									<div class="radio-check">
-										<img class="radio-img" src="radio/kissfm.png" alt="обложка">
-									</div>
-									<input class="radio-btn" type="radio" id="kissFM" name="radioStation"
-										data-radio-station="http://online.kissfm.ua/KissFM_HD">
-									<span class="radio-name">Kiss FM</span>
-								</label>
-							</li>
+            <span class="fa fa-volume-down audio-icon audio-volume-down"></span>
+            <input type="range" class="audio-volume" min="0" max="100" step="1" value="50" aria-label="Громкость">
+            <span class="fa fa-volume-up audio-icon audio-volume-up"></span>
+          </nav>
+        </footer>
+      </article>
 
-							<li class="radio-item">
-								<label>
-									<div class="radio-check">
-										<img class="radio-img" src="radio/radioroks.jpg" alt="обложка">
-									</div>
-									<input class="radio-btn" type="radio" id="radioRoks" name="radioStation"
-										data-radio-station="http://online.radioroks.ua/RadioROKS_HardnHeavy_HD">
-									<span class="radio-name">Radio Roks</span>
-								</label>
-							</li>
+      <!-- Online Live Radio Block -->
+      <article class="player-block radio">
+        <div class="container">
+          <div class="radio-container">
+            <div class="radio-player">
+              <div class="radio-cover">
+                <img class="radio-cover__img" src="radio/start.jpg" alt="Обложка радиостанции">
+              </div>
+              
+              <div class="radio-info-box">
+                <div class="live-pill">
+                  <span class="live-dot"></span>
+                  <span>LIVE BROADCAST</span>
+                </div>
+                <h3 class="radio-header__big">Nightwave Plaza</h3>
+                <p class="radio-genre">Synthwave / Vaporwave 24/7</p>
+              </div>
 
-							<li class="radio-item">
-								<label>
-									<div class="radio-check">
-										<img class="radio-img" src="radio/radiorecord.png" alt="обложка">
-									</div>
-									<input class="radio-btn" type="radio" id="radioRecord" name="radioStation"
-										data-radio-station="https://icecast228.ptspb.ru:8443/rr_128">
-									<span class="radio-name">Radio Record</span>
-								</label>
-							</li>
+              <!-- Radio Spectrum Visualizer -->
+              <div class="visualizer-wrapper radio-vis-wrap">
+                <canvas id="radioVisualizer" class="spectrum-canvas" height="75"></canvas>
+              </div>
+            </div>
 
-						</ul>
-					</form>
-				</div>
-			</div>
-			<footer class="footer-fix radio-footer">
-				<button class="radio-stop fa fa-play"></button>
-				<span class="fa fa-volume-down radio-icon radio-volume-down"></span>
-				<input type="range" class="radio-volume" min="0" max="100" step="1" value="100">
-				<span class="fa fa-volume-up radio-icon radio-volume-up"></span>
-			</footer>
-		</article>
-	</main>
+            <form class="radio-navigation">
+              <h2 class="radio-header">Глобальные станции</h2>
+              <ul class="radio-list">
+                <li class="radio-item select">
+                  <label>
+                    <div class="radio-check">
+                      <img class="radio-img" src="radio/studio21.png" alt="Nightwave Plaza">
+                    </div>
+                    <input class="radio-btn" type="radio" id="nightwavePlaza" name="radioStation" checked
+                      data-radio-station="https://plaza.one/mp3">
+                    <div class="radio-label-box">
+                      <span class="radio-name">Nightwave Plaza</span>
+                      <small class="radio-sub">Synthwave / Vaporwave</small>
+                    </div>
+                  </label>
+                </li>
+
+                <li class="radio-item">
+                  <label>
+                    <div class="radio-check">
+                      <img class="radio-img" src="radio/radiorecord.png" alt="Radio Record">
+                    </div>
+                    <input class="radio-btn" type="radio" id="radioRecord" name="radioStation"
+                      data-radio-station="https://record.hostingradio.ru/rr_high.mp3">
+                    <div class="radio-label-box">
+                      <span class="radio-name">Radio Record</span>
+                      <small class="radio-sub">EDM &amp; Club Dance</small>
+                    </div>
+                  </label>
+                </li>
+
+                <li class="radio-item">
+                  <label>
+                    <div class="radio-check">
+                      <img class="radio-img" src="radio/Energy.png" alt="SomaFM Groove Salad">
+                    </div>
+                    <input class="radio-btn" type="radio" id="grooveSalad" name="radioStation"
+                      data-radio-station="https://ice1.somafm.com/groovesalad-128-mp3">
+                    <div class="radio-label-box">
+                      <span class="radio-name">Groove Salad</span>
+                      <small class="radio-sub">Downtempo Chill</small>
+                    </div>
+                  </label>
+                </li>
+
+                <li class="radio-item">
+                  <label>
+                    <div class="radio-check">
+                      <img class="radio-img" src="radio/kissfm.png" alt="SomaFM DEF CON">
+                    </div>
+                    <input class="radio-btn" type="radio" id="defConRadio" name="radioStation"
+                      data-radio-station="https://ice1.somafm.com/defcon-128-mp3">
+                    <div class="radio-label-box">
+                      <span class="radio-name">DEF CON Radio</span>
+                      <small class="radio-sub">Cyber Underground</small>
+                    </div>
+                  </label>
+                </li>
+
+                <li class="radio-item">
+                  <label>
+                    <div class="radio-check">
+                      <img class="radio-img" src="radio/hitfm.png" alt="SomaFM Vaporwaves">
+                    </div>
+                    <input class="radio-btn" type="radio" id="somaVapor" name="radioStation"
+                      data-radio-station="https://ice1.somafm.com/vaporwaves-128-mp3">
+                    <div class="radio-label-box">
+                      <span class="radio-name">Vaporwaves</span>
+                      <small class="radio-sub">Lo-Fi &amp; Dreamwave</small>
+                    </div>
+                  </label>
+                </li>
+
+                <li class="radio-item">
+                  <label>
+                    <div class="radio-check">
+                      <img class="radio-img" src="radio/radioroks.jpg" alt="SomaFM Secret Agent">
+                    </div>
+                    <input class="radio-btn" type="radio" id="secretAgent" name="radioStation"
+                      data-radio-station="https://ice1.somafm.com/secretagent-128-mp3">
+                    <div class="radio-label-box">
+                      <span class="radio-name">Secret Agent</span>
+                      <small class="radio-sub">Spy Lounge &amp; Noir</small>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+            </form>
+          </div>
+        </div>
+
+        <footer class="footer-fix radio-footer">
+          <button class="radio-stop fa fa-play" title="Старт / Пауза"></button>
+          <span class="fa fa-volume-down radio-icon radio-volume-down"></span>
+          <input type="range" class="radio-volume" min="0" max="100" step="1" value="85" aria-label="Громкость радио">
+          <span class="fa fa-volume-up radio-icon radio-volume-up"></span>
+        </footer>
+      </article>
+    </main>
+  </div>
+
+  <script src="dist/script.js" type="module"></script>
 </body>
-
 </html>

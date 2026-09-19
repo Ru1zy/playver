@@ -2,6 +2,7 @@ const path = require('path');
 module.exports = {
   entry: './src/index.js',
   output: {
+    hashFunction: 'sha256',
     filename: 'script.js',
     path: path.resolve(__dirname, './dist')
   },
