@@ -4,6 +4,7 @@ export const radioPlayerInit = () => {
   const radio = document.querySelector(".radio");
   const radioCoverImg = document.querySelector(".radio-cover__img");
   const radioHeaderBig = document.querySelector(".radio-header__big");
+  const radioGenre = document.querySelector(".radio-genre");
   const radioNavigation = document.querySelector(".radio-navigation");
   const radioItems = document.querySelectorAll(".radio-item");
   const radioStop = document.querySelector(".radio-stop");
@@ -49,6 +50,11 @@ export const radioPlayerInit = () => {
 
     const title = parent.querySelector(".radio-name").textContent;
     radioHeaderBig.textContent = title;
+
+    const sub = parent.querySelector(".radio-sub");
+    if (sub && radioGenre) {
+      radioGenre.textContent = `${sub.textContent} 24/7`;
+    }
 
     const img = parent.querySelector(".radio-img").src;
     radioCoverImg.src = img;

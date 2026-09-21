@@ -105,7 +105,57 @@
 
             <div class="audio-info">
               <span class="audio-badge">RU1ZY BEATS // 320 KBPS</span>
-              <h3 class="audio-header">SPIN THAT!</h3>
+              <div class="audio-header-marquee">
+                <h3 class="audio-header">SPIN THAT!</h3>
+              </div>
+            </div>
+
+            <!-- Cyberpunk Playlist Drawer -->
+            <div class="audio-playlist-panel hide" id="audioPlaylistPanel">
+              <div class="playlist-header">
+                <div class="playlist-title-group">
+                  <i class="fa fa-list-ul neon-icon"></i>
+                  <h4 class="playlist-title">ПЛЕЙЛИСТ</h4>
+                  <span class="playlist-count" id="playlistCount">22 трека</span>
+                </div>
+                <div class="playlist-header-actions">
+                  <label for="audioFileInput" class="btn-upload-track" title="Загрузить свои MP3">
+                    <i class="fa fa-cloud-upload"></i> <span>+ Свой трек</span>
+                  </label>
+                  <input type="file" id="audioFileInput" accept="audio/*" multiple style="display:none;">
+                  <button type="button" class="playlist-close-btn" id="playlistCloseBtn" title="Закрыть">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Filter tabs & Search -->
+              <div class="playlist-toolbar">
+                <div class="playlist-tabs">
+                  <button type="button" class="playlist-tab active" data-tab="all">Все</button>
+                  <button type="button" class="playlist-tab" data-tab="builtin">Ru1zy Beats</button>
+                  <button type="button" class="playlist-tab" data-tab="custom">Мои треки <span class="badge-custom-count" id="badgeCustomCount">(0)</span></button>
+                </div>
+                <div class="playlist-search-box">
+                  <i class="fa fa-search"></i>
+                  <input type="text" id="playlistSearchInput" placeholder="Поиск по трекам...">
+                </div>
+              </div>
+
+              <!-- Track list & Drop area -->
+              <div class="playlist-tracks-container" id="playlistTracksContainer">
+                <ul class="playlist-list" id="playlistList">
+                  <!-- Generated dynamically via JS -->
+                </ul>
+                <div class="playlist-drop-zone" id="playlistDropZone">
+                  <i class="fa fa-music"></i>
+                  <p>Перетащите сюда аудиофайлы (.mp3, .wav) для добавления в плейлист</p>
+                </div>
+              </div>
+
+              <div class="playlist-footer-info">
+                <i class="fa fa-database"></i> <span>Хранилище: IndexedDB (сохраняется в памяти браузера)</span>
+              </div>
             </div>
 
             <!-- Canvas Frequency Visualizer -->
@@ -123,6 +173,7 @@
               <button class="audio-button audio-button__prev fa fa-step-backward" title="Предыдущий трек"></button>
               <button class="audio-button audio-button__play fa fa-play" title="Воспроизведение"></button>
               <button class="audio-button audio-button__next fa fa-step-forward" title="Следующий трек"></button>
+              <button type="button" class="audio-button audio-button__playlist fa fa-list" id="playlistToggleBtn" title="Открыть плейлист"></button>
             </div>
             
             <span class="audio-time audio-time__passed">00:00</span>
@@ -171,7 +222,7 @@
                       <img class="radio-img" src="radio/studio21.png" alt="Nightwave Plaza">
                     </div>
                     <input class="radio-btn" type="radio" id="nightwavePlaza" name="radioStation" checked
-                      data-radio-station="https://plaza.one/mp3">
+                      data-radio-station="https://radio.plaza.one/mp3">
                     <div class="radio-label-box">
                       <span class="radio-name">Nightwave Plaza</span>
                       <small class="radio-sub">Synthwave / Vaporwave</small>
@@ -182,12 +233,12 @@
                 <li class="radio-item">
                   <label>
                     <div class="radio-check">
-                      <img class="radio-img" src="radio/radiorecord.png" alt="Radio Record">
+                      <img class="radio-img" src="radio/radiorecord.png" alt="Beat Blender EDM">
                     </div>
                     <input class="radio-btn" type="radio" id="radioRecord" name="radioStation"
-                      data-radio-station="https://record.hostingradio.ru/rr_high.mp3">
+                      data-radio-station="https://ice6.somafm.com/beatblender-128-mp3">
                     <div class="radio-label-box">
-                      <span class="radio-name">Radio Record</span>
+                      <span class="radio-name">Beat Blender</span>
                       <small class="radio-sub">EDM &amp; Club Dance</small>
                     </div>
                   </label>
