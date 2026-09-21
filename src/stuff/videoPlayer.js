@@ -25,12 +25,16 @@ export const videoPlayerInit = () => {
   }
 
   if (videoPip && document.pictureInPictureEnabled) {
-    videoPip.addEventListener('click', async () => {
+    videoPip.addEventListener('click', () => {
       try {
         if (document.pictureInPictureElement) {
-          await document.exitPictureInPicture();
+          document.exitPictureInPicture().catch((err) => {
+            console.warn('PiP error:', err);
+          });
         } else {
-          await videoPlayer.requestPictureInPicture();
+          videoPlayer.requestPictureInPicture().catch((err) => {
+            console.warn('PiP error:', err);
+          });
         }
       } catch (err) {
         console.warn('PiP error:', err);

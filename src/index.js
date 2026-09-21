@@ -15,9 +15,9 @@ const deactivationPlayer = () => {
     item.classList.remove("active");
   });
 
-  radioPlayerInit.stop();
-  videoPlayerInit.stop();
-  musicPlayerInit.stop();
+  if (typeof radioPlayerInit.stop === 'function') radioPlayerInit.stop();
+  if (typeof videoPlayerInit.stop === 'function') videoPlayerInit.stop();
+  if (typeof musicPlayerInit.stop === 'function') musicPlayerInit.stop();
 };
 
 playerBtn.forEach((btn, i) => {
