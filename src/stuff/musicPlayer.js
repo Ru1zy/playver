@@ -234,11 +234,11 @@ export const musicPlayerInit = () => {
     }).join('');
   };
 
-  // Process user audio files into IndexedDB
-  const handleAddFiles = async (files) => {
+  // Process user audio files into IndexedDB without async/await
+  const handleAddFiles = (files) => {
     if (!files || !files.length) return;
 
-    const audioFiles = Array.from(files).filter(file => 
+    const audioFiles = Array.from(files).filter((file) => 
       file.type.startsWith("audio/") || file.name.match(/\.(mp3|wav|ogg|flac|m4a|aac)$/i)
     );
 
@@ -249,33 +249,34 @@ export const musicPlayerInit = () => {
 
     let firstAddedId = null;
 
-    for (const file of audioFiles) {
-      try {
-        const saved = await saveCustomTrack(file);
-        const customItem = {
-          id: saved.id,
-          name: saved.name,
-          formattedName: saved.name.toUpperCase(),
-          blob: saved.blob,
-          isCustom: true,
-        };
-        customTracks.push(customItem);
-        allTracks.push(customItem);
-        if (!firstAddedId) firstAddedId = saved.id;
-      } catch (err) {
-        console.error("Failed to save audio track:", err);
-      }
-    }
+    const saveChain = audioFiles.reduce((p, file) => {
+      return p.then(() => {
+        return saveCustomTrack(file).then((saved) => {
+          const customItem = {
+            id: saved.id,
+            name: saved.name,
+            formattedName: saved.name.toUpperCase(),
+            blob: saved.blob,
+            isCustom: true,
+          };
+          customTracks.push(customItem);
+          allTracks.push(customItem);
+          if (!firstAddedId) firstAddedId = saved.id;
+        }).catch((err) => {
+          console.error("Failed to save audio track:", err);
+        });
+      });
+    }, Promise.resolve());
 
-    renderPlaylist();
-
-    // Play the newly uploaded track
-    if (firstAddedId) {
-      const newIndex = allTracks.findIndex(t => t.id === firstAddedId);
-      if (newIndex !== -1) {
-        loadTrackByIndex(newIndex, true);
+    saveChain.then(() => {
+      renderPlaylist();
+      if (firstAddedId) {
+        const newIndex = allTracks.findIndex((t) => t.id === firstAddedId);
+        if (newIndex !== -1) {
+          loadTrackByIndex(newIndex, true);
+        }
       }
-    }
+    });
   };
 
   // Initialize custom tracks from IndexedDB
@@ -340,20 +341,21 @@ export const musicPlayerInit = () => {
   }
 
   if (playlistList) {
-    playlistList.addEventListener("click", async (e) => {
+    playlistList.addEventListener("click", (e) => {
       const deleteBtn = e.target.closest(".playlist-item-delete");
       if (deleteBtn) {
         e.stopPropagation();
         const idToDelete = deleteBtn.getAttribute("data-delete-id");
         if (idToDelete) {
-          await deleteCustomTrack(idToDelete);
-          const wasPlayingDeleted = allTracks[currentTrackIndex]?.id === idToDelete;
-          customTracks = customTracks.filter((t) => t.id !== idToDelete);
-          allTracks = allTracks.filter((t) => t.id !== idToDelete);
-          renderPlaylist();
-          if (wasPlayingDeleted) {
-            loadTrackByIndex(currentTrackIndex, true);
-          }
+          deleteCustomTrack(idToDelete).then(() => {
+            const wasPlayingDeleted = allTracks[currentTrackIndex] && allTracks[currentTrackIndex].id === idToDelete;
+            customTracks = customTracks.filter((t) => t.id !== idToDelete);
+            allTracks = allTracks.filter((t) => t.id !== idToDelete);
+            renderPlaylist();
+            if (wasPlayingDeleted) {
+              loadTrackByIndex(currentTrackIndex, true);
+            }
+          });
         }
         return;
       }

@@ -1,6 +1,7 @@
 /**
  * IndexedDB helper for PlayVer Music Station
  * Stores user-uploaded custom audio tracks permanently on client device
+ * Uses pure Promises (no regeneratorRuntime dependency)
  */
 
 const DB_NAME = 'PlayVerMusicDB';
@@ -29,9 +30,8 @@ export function openAudioDB() {
   });
 }
 
-export async function getCustomTracks() {
-  try {
-    const db = await openAudioDB();
+export function getCustomTracks() {
+  return openAudioDB().then((db) => {
     return new Promise((resolve, reject) => {
       const tx = db.transaction(STORE_NAME, 'readonly');
       const store = tx.objectStore(STORE_NAME);
@@ -40,40 +40,40 @@ export async function getCustomTracks() {
       req.onsuccess = () => resolve(req.result || []);
       req.onerror = () => reject(req.error);
     });
-  } catch (err) {
+  }).catch((err) => {
     console.warn('IndexedDB getCustomTracks error:', err);
     return [];
-  }
-}
-
-export async function saveCustomTrack(file) {
-  const db = await openAudioDB();
-  const trackId = 'custom_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
-  const cleanName = file.name.replace(/\.[^/.]+$/, '').trim();
-
-  const trackRecord = {
-    id: trackId,
-    name: cleanName || 'Безымянный трек',
-    blob: file,
-    size: file.size,
-    type: file.type || 'audio/mpeg',
-    dateAdded: Date.now(),
-    isCustom: true
-  };
-
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(STORE_NAME, 'readwrite');
-    const store = tx.objectStore(STORE_NAME);
-    const req = store.put(trackRecord);
-
-    req.onsuccess = () => resolve(trackRecord);
-    req.onerror = () => reject(req.error);
   });
 }
 
-export async function deleteCustomTrack(id) {
-  try {
-    const db = await openAudioDB();
+export function saveCustomTrack(file) {
+  return openAudioDB().then((db) => {
+    const trackId = 'custom_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+    const cleanName = file.name.replace(/\.[^/.]+$/, '').trim();
+
+    const trackRecord = {
+      id: trackId,
+      name: cleanName || 'Безымянный трек',
+      blob: file,
+      size: file.size,
+      type: file.type || 'audio/mpeg',
+      dateAdded: Date.now(),
+      isCustom: true
+    };
+
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      const store = tx.objectStore(STORE_NAME);
+      const req = store.put(trackRecord);
+
+      req.onsuccess = () => resolve(trackRecord);
+      req.onerror = () => reject(req.error);
+    });
+  });
+}
+
+export function deleteCustomTrack(id) {
+  return openAudioDB().then((db) => {
     return new Promise((resolve, reject) => {
       const tx = db.transaction(STORE_NAME, 'readwrite');
       const store = tx.objectStore(STORE_NAME);
@@ -82,15 +82,14 @@ export async function deleteCustomTrack(id) {
       req.onsuccess = () => resolve(true);
       req.onerror = () => reject(req.error);
     });
-  } catch (err) {
+  }).catch((err) => {
     console.warn('IndexedDB deleteCustomTrack error:', err);
     return false;
-  }
+  });
 }
 
-export async function clearAllCustomTracks() {
-  try {
-    const db = await openAudioDB();
+export function clearAllCustomTracks() {
+  return openAudioDB().then((db) => {
     return new Promise((resolve, reject) => {
       const tx = db.transaction(STORE_NAME, 'readwrite');
       const store = tx.objectStore(STORE_NAME);
@@ -99,8 +98,8 @@ export async function clearAllCustomTracks() {
       req.onsuccess = () => resolve(true);
       req.onerror = () => reject(req.error);
     });
-  } catch (err) {
+  }).catch((err) => {
     console.warn('IndexedDB clearAllCustomTracks error:', err);
     return false;
-  }
+  });
 }
